@@ -72,8 +72,8 @@ export default function UserChat() {
   const [reportReverseData, setReportReverseData] = React.useState([]);
 
   const [divData, setDivData] = React.useState({
-    bug_code: "Click Chat Title To Show Data Here...",
-    bug_report: "Click Chat Title To Show Data Here...",
+    bug_code: "Click Report Title To Show Data Here...",
+    bug_report: "Click Report Title To Show Data Here...",
   });
 
   const [loadingDiv, setLoadingDiv] = React.useState(false);
@@ -134,12 +134,12 @@ export default function UserChat() {
                     : "primary.light",
               }}
             >
-              Chats
+              Reports
             </Typography>
           </Typography>
           <Typography variant="body1" textAlign="center" color="text.secondary">
-            Our website provide collection of your chats, designed specifically
-            for programmers where you can preview your chats at anytime. <br />
+            Our website provide collection of your reports, designed specifically
+            for programmers where you can preview your reports at anytime. <br />
           </Typography>
         </div>
 
@@ -183,7 +183,7 @@ export default function UserChat() {
                   letterSpacing: 1,
                 }}
               >
-                Chats Title
+                Reports Title
               </p>
               <Divider></Divider>
 
@@ -272,7 +272,7 @@ export default function UserChat() {
                           letterSpacing: 1,
                         }}
                       >
-                        No Chats To Show...
+                        No Reports To Show...
                       </p>
                     </div>
                   </div>

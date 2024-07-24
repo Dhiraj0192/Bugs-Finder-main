@@ -3,7 +3,6 @@ Django==4.2.2
 django-cors-headers==4.1.0
 django-dotenv==1.4.2
 djangorestframework==3.14.0
-mysqlclient==2.1.1
 pytz==2023.3
 sqlparse==0.4.4
 tzdata==2023.3

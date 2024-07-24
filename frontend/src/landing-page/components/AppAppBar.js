@@ -1,6 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-
+import './style.css';
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
 import ToggleColorMode from "./ToggleColorMode";
+import { Context } from "../../context/context";
 
 import { useNavigate } from "react-router-dom";
 import { removeToken, getToken } from "../../services/localStorageService";
@@ -35,6 +36,14 @@ const logoStyle = {
 };
 
 function AppAppBar({ mode, toggleColorMode }) {
+
+  let {
+    
+    setShowResult,
+    showResultAnalysis,
+    setShowResultAnalysis,
+    
+  } = React.useContext(Context);
   const { access_token } = getToken();
   
   const [logoutUser] = useLogoutUserMutation();
@@ -62,21 +71,31 @@ function AppAppBar({ mode, toggleColorMode }) {
   };
 
   const goToHome = () => {
+    setShowResult(false);
+    setShowResultAnalysis(false);
     navigate("/");
   };
 
   const goToDebug = () => {
+    setShowResult(false);
+    setShowResultAnalysis(false);
     navigate("/bugfinder");
   };
 
   const goToCheatSheet = () => {
+    setShowResult(false);
+    setShowResultAnalysis(false);
     navigate("/codecheatsheet");
   };
 
   const goToCodeAnalyse = () => {
+    setShowResult(false);
+    setShowResultAnalysis(false);
     navigate("/codeanalyse");
   };
   const goToUserchat = () => {
+    setShowResult(false);
+    setShowResultAnalysis(false);
     navigate("/userchat");
   };
 
@@ -148,7 +167,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                 alt="logo of sitemark"
               />
               <Typography
-                fontSize="20px"
+                fontSize="25px"
                 fontWeight="bold"
                 paddingLeft={1.5}
                 paddingRight={1.5}
@@ -156,8 +175,8 @@ function AppAppBar({ mode, toggleColorMode }) {
                 Bug Finder
               </Typography>
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                <MenuItem onClick={goToHome} sx={{ py: "6px", px: "12px" }}>
-                  <Typography variant="body2" color="text.primary">
+                <MenuItem onClick={goToHome} sx={{ py: "6px", px: "12px" }} >
+                  <Typography variant="body2" color="text.primary"fontSize={18} letterSpacing={1}>
                     Home
                   </Typography>
                 </MenuItem>
@@ -168,7 +187,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                     onClick={() => scrollToSection("features")}
                     sx={{ py: "6px", px: "12px" }}
                   >
-                    <Typography variant="body2" color="text.primary">
+                    <Typography variant="body2" color="text.primary"fontSize={18} letterSpacing={1}>
                       Features
                     </Typography>
                   </MenuItem>
@@ -181,15 +200,15 @@ function AppAppBar({ mode, toggleColorMode }) {
                     onClick={() => scrollToSection("highlights")}
                     sx={{ py: "6px", px: "12px" }}
                   >
-                    <Typography variant="body2" color="text.primary">
+                    <Typography variant="body2" color="text.primary" fontSize={18} letterSpacing={1}>
                       Highlights
                     </Typography>
                   </MenuItem>
                 )}
 
                 {access_token ? (
-                  <MenuItem onClick={goToDebug} sx={{ py: "6px", px: "12px" }}>
-                    <Typography variant="body2" color="text.primary">
+                  <MenuItem onClick={goToDebug} sx={{ py: "6px", px: "12px" }} >
+                    <Typography variant="body2" color="text.primary"fontSize={18} letterSpacing={1}>
                       Let's Find Bug
                     </Typography>
                   </MenuItem>
@@ -202,7 +221,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                     onClick={goToCodeAnalyse}
                     sx={{ py: "6px", px: "12px" }}
                   >
-                    <Typography variant="body2" color="text.primary">
+                    <Typography variant="body2" color="text.primary" fontSize={18} letterSpacing={1}>
                       Analyse Code
                     </Typography>
                   </MenuItem>
@@ -212,11 +231,12 @@ function AppAppBar({ mode, toggleColorMode }) {
 
                 {access_token ? (
                   <MenuItem
+                  
                     onClick={goToUserchat}
                     sx={{ py: "6px", px: "12px" }}
                   >
-                    <Typography variant="body2" color="text.primary">
-                      Chats
+                    <Typography variant="body2" color="text.primary" fontSize={18} letterSpacing={1}>
+                      Reports
                     </Typography>
                   </MenuItem>
                 ) : (
@@ -228,7 +248,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                     onClick={goToCheatSheet}
                     sx={{ py: "6px", px: "12px" }}
                   >
-                    <Typography variant="body2" color="text.primary">
+                    <Typography variant="body2" color="text.primary" fontSize={18} letterSpacing={1}>
                       Cheat Sheet
                     </Typography>
                   </MenuItem>
@@ -363,11 +383,11 @@ function AppAppBar({ mode, toggleColorMode }) {
                     ""
                   )}
 
-                  {access_token ? (
-                    <MenuItem onClick={goToUserchat}>Chats</MenuItem>
+                  {/* {access_token ? (
+                    <MenuItem onClick={goToUserchat}>Reports</MenuItem>
                   ) : (
                     ""
-                  )}
+                  )} */}
 
                   {access_token ? (
                     <MenuItem onClick={goToCheatSheet}>Cheat Sheet</MenuItem>
@@ -375,7 +395,32 @@ function AppAppBar({ mode, toggleColorMode }) {
                     ""
                   )}
 
-                  <Divider />
+
+
+                    {access_token ? (
+                      <div>
+                        <Divider sx={{backgroundColor:"#7069cc"}}/>
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        size="small"
+                        component="a"
+                        onClick={Submit}
+                        target="_blank"
+                        sx={{
+                          paddingLeft:3,
+                          paddingRight:3,
+                          fontSize:15
+                        }}
+                      >
+                        Logout
+                      </Button>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+
+                  <Divider sx={{backgroundColor:"#7069cc"}}/>
                   {access_token ? (
                     ""
                   ) : (

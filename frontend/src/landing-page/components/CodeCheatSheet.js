@@ -1,6 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-
+import './style.css';
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 
@@ -142,6 +142,7 @@ export default function CodeCheatSheet() {
                 component="span"
                 variant="h1"
                 sx={{
+                  fontSize:{xs: "30px", sm:"35px", lg:"60px"},
                   color: (theme) =>
                     theme.palette.mode === "light"
                       ? "primary.main"
@@ -171,6 +172,7 @@ export default function CodeCheatSheet() {
         ></Divider>
 
         <div
+        className="cheat-button-c"
           style={{
             width: "92%",
             height: "100%",
@@ -188,6 +190,7 @@ export default function CodeCheatSheet() {
             }}
           >
             <Box
+            className="cheat-item-c"
               style={{
                 // backgroundColor:{python?"transparent":"#436b97"},
                 backgroundColor: python ? "transparent" : "#436b97",
@@ -200,6 +203,7 @@ export default function CodeCheatSheet() {
               onClick={pythonCick}
             >
               <Typography
+              className="cheat-item"
                 sx={{
                   paddingTop: "15px",
                   paddingBottom: "15px",
@@ -215,6 +219,7 @@ export default function CodeCheatSheet() {
             </Box>
 
             <Box
+            className="cheat-item-c"
               sx={{
                 backgroundColor: java ? "transparent" : "#d33731",
                 width: "20%",
@@ -226,6 +231,7 @@ export default function CodeCheatSheet() {
               onClick={javaCick}
             >
               <Typography
+              className="cheat-item"
                 sx={{
                   paddingTop: "15px",
                   paddingBottom: "15px",
@@ -241,6 +247,7 @@ export default function CodeCheatSheet() {
             </Box>
 
             <Box
+            className="cheat-item-c"
               sx={{
                 backgroundColor: javaScript ? "transparent" : "#ebd01a",
                 width: "20%",
@@ -252,6 +259,7 @@ export default function CodeCheatSheet() {
               onClick={javaScriptCick}
             >
               <Typography
+              className="cheat-item"
                 sx={{
                   paddingTop: "15px",
                   paddingBottom: "15px",
@@ -276,6 +284,7 @@ export default function CodeCheatSheet() {
             }}
           >
             <Box
+            className="cheat-item-c"
               sx={{
                 backgroundColor: c ? "transparent" : "#2a338a",
                 width: "20%",
@@ -287,6 +296,7 @@ export default function CodeCheatSheet() {
               onClick={cCick}
             >
               <Typography
+              className="cheat-item"
                 sx={{
                   paddingTop: "15px",
                   paddingBottom: "15px",
@@ -302,6 +312,7 @@ export default function CodeCheatSheet() {
             </Box>
 
             <Box
+            className="cheat-item-c"
               sx={{
                 backgroundColor: cplus ? "transparent" : "#6d94c7",
                 width: "20%",
@@ -313,6 +324,7 @@ export default function CodeCheatSheet() {
               onClick={cPlusCick}
             >
               <Typography
+              className="cheat-item"
                 sx={{
                   paddingTop: "15px",
                   paddingBottom: "15px",
@@ -339,6 +351,7 @@ export default function CodeCheatSheet() {
 
         {python ? (
           <div
+          className="image-c"
             style={{
               marginTop: "3rem",
               width: "92%",
@@ -364,6 +377,7 @@ export default function CodeCheatSheet() {
 
         {java ? (
           <div
+          className="image-c"
             style={{
               marginTop: "3rem",
               width: "92%",
@@ -389,6 +403,7 @@ export default function CodeCheatSheet() {
 
         {javaScript ? (
           <div
+          className="image-c"
             style={{
               marginTop: "3rem",
               width: "92%",
@@ -414,6 +429,7 @@ export default function CodeCheatSheet() {
 
         {c ? (
           <div
+          className="image-c"
             style={{
               marginTop: "3rem",
               width: "92%",
@@ -439,6 +455,7 @@ export default function CodeCheatSheet() {
 
         {cplus ? (
           <div
+          className="image-c"
             style={{
               marginTop: "3rem",
               width: "92%",

@@ -37,21 +37,22 @@ const ContextProvider = (props) => {
   let onSent = async (prompt) => {
     setResultData("");
     setFinalResultData("");
+    setRecentPrompt("");
     setLoading(true);
     setShowResult(true);
     let response = await run(prompt);
-    let responseArray = response.split("**");
-    let newResponse = "";
-    for (let i = 0; i < responseArray.length; i++) {
-      if (i === 0 || i % 2 !== 1) {
-        newResponse += responseArray[i];
-      } else {
-        newResponse += "<b>" + responseArray[i] + "</b>";
-      }
-    }
-    let newResponse2 = newResponse.split("*").join("</br>");
-    setFinalResultData(newResponse2)
-    let newResponseArray = newResponse2.split(" ");
+    // let responseArray = response.split("**");
+    // let newResponse = "";
+    // for (let i = 0; i < responseArray.length; i++) {
+    //   if (i === 0 || i % 2 !== 1) {
+    //     newResponse += responseArray[i];
+    //   } else {
+    //     newResponse += "<b>" + responseArray[i] + "</b>";
+    //   }
+    // }
+    // let newResponse2 = newResponse.split("*").join("</br>");
+    setFinalResultData(response)
+    let newResponseArray = response.split(" ");
     
    
 

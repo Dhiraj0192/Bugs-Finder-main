@@ -1,0 +1,159 @@
+.main-c{
+    @media (max-width: 1050px) {
+        flex-direction: column;
+        margin-top: 2rem !important;
+        
+    }
+}
+
+.editor-container{
+    @media (max-width: 1050px) {
+        width: 95vw !important;
+        margin-left: 1rem !important;
+        margin-right: 1rem !important;
+        margin-bottom: 2rem !important;
+        height: 40vh !important;
+    }
+
+    /* @media (min-width: 600px) and (max-width: 1050px) {
+        margin-left: 20px !important;
+        
+    } */
+    
+}
+.language-c{
+    @media (max-width: 1050px) {
+        width: 100%;
+        justify-content: space-around;
+        
+    }
+
+}
+
+.editors-c{
+    @media (max-width: 1050px) {
+        width: 93vw !important;
+        height: 40vh !important;
+        margin-top: 2rem !important;
+        
+    }
+
+}
+
+.second-c{
+    @media (max-width: 1050px) {
+        margin-left: 1rem !important;
+        margin-right: 1rem !important;
+        /* margin-top: 18rem !important; */
+    }
+}
+.buttons-c-s{
+    @media (max-width: 1050px) {
+        margin-left: .2rem !important;
+        margin-right: .5rem !important;
+        
+    }
+}
+
+.button-c{
+    @media (max-width: 1050px) {
+        justify-content: space-between !important;
+       
+    
+    }
+}
+
+.button{
+    @media (max-width: 1050px) {
+       width: 45% !important;
+       
+    }
+}
+
+.outputBox-c{
+    @media (max-width: 1050px) {
+        width: 93vw !important;
+        height: 40vh !important;
+        margin-top: 2rem !important;
+    
+    }
+    /* @media (min-width: 600px) and (max-width: 1050px) {
+        width: 40vw !important;
+        height: 50vh !important;
+        
+    } */
+}
+
+.save-report-c{
+    @media (max-width: 1050px) {
+        width: 25% !important;
+        
+    
+    }
+
+}
+
+.save-report-button{
+    @media (max-width: 1050px) {
+        font-size: 9px !important;
+        
+    
+    }
+
+}
+
+/* cheat sheet */
+
+.cheat-item-c{
+    @media (max-width: 1050px) {
+        width: 50% !important;
+        height: 10% !important;
+        
+    
+    }
+
+}
+
+.cheat-button-c{
+
+    @media (max-width: 1050px) {
+        margin-left: 1.5rem !important;
+    }
+
+}
+
+.image-c{
+
+    @media (max-width: 1050px) {
+        margin-left: 16px !important;
+        margin-right: 16px !important;
+        width: 100% !important;
+        margin-top: 0 !important;
+    
+    }
+
+}
+
+.cheat-item{
+
+    @media (max-width: 1050px) {
+        font-size: 13px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        padding-left: 25px !important;
+        padding-right: 25px !important;
+    
+    }
+
+}
+
+/* report */
+
+.menu-hidden{
+
+    @media (max-width: 1050px) {
+        display: none;
+    
+    }
+
+}

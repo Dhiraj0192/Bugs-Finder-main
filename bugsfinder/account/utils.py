@@ -4,8 +4,8 @@ from django.utils.html import strip_tags
 from django.conf import settings
 
 def send_activation_email(recipient_email, activation_url,uid,token):
-    subject = 'Activate your account on '+settings.SITE_NAME
-    from_email = settings.EMAIL_HOST_USER
+    subject = 'Kindly Activate your account on Bugs Finder'
+    from_email = "Bugs Finder"
     to = [recipient_email]
 
     # Load the HTML template
@@ -16,6 +16,11 @@ def send_activation_email(recipient_email, activation_url,uid,token):
     email = EmailMultiAlternatives(subject, text_content, from_email, to)
     email.attach_alternative(html_content, "text/html")
     email.send()
+
+
+
+
+    
 
 # def send_reset_password_email(recipient_email, reset_url):
 #     subject = 'Reset Your Password on '+settings.SITE_NAME

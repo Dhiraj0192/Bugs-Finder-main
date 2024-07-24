@@ -1,6 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-
+import './style.css';
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -84,6 +84,7 @@ export default function BugFinder() {
   const [inputValue, setInputValue] = React.useState("");
 
   const [language, setLanguage] = React.useState("python");
+  const [showDelayedText, setShowDelayedText] = React.useState(false);
 
   const onSelect = (language) => {
     setLanguage(language);
@@ -105,6 +106,8 @@ export default function BugFinder() {
     setFinalResultData,
   } = React.useContext(Context);
 
+  
+
   const toggleColorMode = () => {
     setMode((prev) => (prev === "dark" ? "dark" : "dark"));
   };
@@ -120,7 +123,8 @@ export default function BugFinder() {
   }
 
   let getEditorValue = async () => {
-    // let finaldebugValue = "ggggggg";
+
+    input = "";
     setIsLoadingCodeBox(false);
     setResultData("");
     setFinalResultData("");
@@ -129,32 +133,275 @@ export default function BugFinder() {
 
     input = editorRef.current.getValue();
     setInput(input);
+    setLoading(true);
 
-    // onSent(
-    //   "Identify given code is python or not. If the given code is in python then Where is the bug in this python code? Explain about error and also solve the given code and provide me solved code. :" +
-    //     input
-    // );
-    // onSent(
-    //   "You are a highly skilled " +
-    //     language +
-    //     " software developer. I have a source code with several bugs in it.Analyse full source code and always must check first if given code is " +
-    //     language +
-    //     " code or not. If given code is not " +
-    //     language +
-    //     " code then strictly ask to provide " +
-    //     language +
-    //     " code and You are never allowed to provide Recomended code. But If give source code is written in " +
-    //     language +
-    //     " then first check any missing header file in source code , if yes then reply about that missing header file then continue check that source code missing any main function to run whole code, if yes then reply for that then further continue checking given source code contain any bug like syntax error or logic error or semicolon at the end of line ,if yes then also reply for what kind of bug is this also how to solve it . Your explaination title must start with 'Code Bug Explaination : ' then your explaination from next line and You are never allowed to provide the corrected line or any kind of code . " +
-    //     input
-    // );
+
 
     if (language == "python") {
-      onSent(
-        "You are a highly skilled python developer. I have a source code with several bugs in it.Analyse full source code and first must check the given source code contain any error or not? If not then strictly reply all good no error found. But if given source code contain any type of error and through error after compile and executation then provide breif explaination what kind of error is this in a simple way also how to solve it . Your explaination title must start with 'Code Bug Explaination : ' then your explaination from next line . " +
-          input
-      );
+      setTimeout(() => {
+        setShowDelayedText(true);
+        onSent(
+          `You're a meticulous and experienced Python developer with a keen eye for detail, having debugged and optimized countless codes over the years. You take pride in your ability to identify and rectify errors, ensuring that the code is efficient, readable, and reliable.
+  
+          Your task is to strictly analyze the source code provided and strictly analyze the following steps :
+  
+          First step : Check the given source give is in Python code or not. If not then strictly ask to provide python code.
+          Second step : check if it contains any errors.
+  
+          Here are the details of the source code -
+  
+          Source Code: ${input}
+  
+          If it does not contain any errors which you have analyzed in second steps, please respond with "All good, no error found." However, if you find any errors in second steps then that prevent it from compiling or executing correctly then please provide a brief explanation of all of the errors which you have analyzed in second steps, starting with the title "Code Bug Explanation:" on the next line, followed by a simple and concise description of the error and how to solve it`
+        );
+      }, 3000); // Delay in milliseconds
+      
     }
+
+    if (language == "java") {
+      setTimeout(() => {
+        setShowDelayedText(true);
+        onSent(
+          `You're a meticulous and experienced java developer with a keen eye for detail, having debugged and optimized countless codes over the years. You take pride in your ability to identify and rectify errors, ensuring that the code is efficient, readable, and reliable.
+  
+          Your task is to strictly analyze the source code provided and strictly analyze the following steps:
+  
+          First step : Check the given source give is in java code or not. If not then strictly ask to provide java code.
+          Second step : Code must contain main class to run java source code. Strictly check If main class missing or not. 
+          Third step :  If any main function missing to execute the source code or not
+          Forth step : If any semicolon missing at the end of statement or not
+          Last step : If any other type of error
+
+          Very Very Strictly Check Second step at the begining.
+  
+          Then Very Very Strictly Check Third and Forth and Last Steps.
+  
+          According to above steps if it does not contain any errors which you have analyzed in second or third or forth or in last steps, please respond with "All good, no error found." However, if you analyzed any errors in second and third and forth and in last steps then that prevent it from compiling or executing correctly then please provide a brief explanation of all of the errors which you have analyzed in second and third and forth and last steps, 
+          
+          Strictly not allowed to mention user provided source code in your response.
+
+          Example :
+  
+            <<< 
+                    
+              Code Bug Explanation:
+  
+                1. **Missing Class Declaration:**  The code lacks a class declaration. In Java, every program must be enclosed within a class. This code needs a class definition like 'public class MyProgram { ... }' to hold the 'main' method.
+
+                2. **Missing Semicolon:**  The code is missing a semicolon at the end of the 'float product = first * second' statement. Semicolons are required to terminate statements in Java.
+
+                3. **Missing 'main' Function:** Java programs require a 'main' function as the entry point of execution. This code doesn't have a 'main' function. The 'main' function should be declared as 'public static void main(String[] args) { ... }'.
+
+                4. **Syntax Error in Variable Declaration:** The line 'float first  1.5f;' has a syntax error. There should be an assignment operator ('=') between the variable name ('first') and the value ('1.5f').
+
+                5. **Logic Error:** //your logic error explaination
+
+              **Here's how to fix the code:**
+
+                '''java
+                  public class MultiplyTwoNumbers {
+
+                    public static void main(String[] args) {
+
+                      float first = 1.5f;
+                      float second = 2.0f;
+
+                      float product = first * second;
+
+                      System.out.println("The product is: " + product);
+                    }
+                  }
+                '''
+
+              **Explanation of Corrections:**
+
+                1. A 'public class MultiplyTwoNumbers' declaration is added to enclose the code within a class.
+                2. The missing semicolon after 'float product = first * second' is added.
+                3. The 'main' function is defined as 'public static void main(String[] args) { ... }'.
+                4. The syntax error in 'float first  1.5f;' is corrected by adding the assignment operator ('=').
+           
+            >>>
+  
+          Very Very Strictly follow above Example for your response.
+          
+          You are strictly not allowed to mention steps.
+          
+          Here are the details of the source code -
+  
+          Source Code: ${input}`
+        );
+      }, 3000); // Delay in milliseconds
+      
+    }
+
+    if (language == "c") {
+      setTimeout(() => {
+        setShowDelayedText(true);
+        onSent(
+          `You're a meticulous and experienced C Language developer with a keen eye for detail, having debugged and optimized countless codes over the years. You take pride in your ability to identify and rectify errors, ensuring that the code is efficient, readable, and reliable.
+  
+          Your task is to strictly analyze the source code provided and strictly analyze the following steps:
+  
+          First step : Check the given source give is in C language code or not. If not then strictly ask to provide C code.
+          Second step : Code must contain header file to run C language code. Strictly check if header file is missing or not.
+          Third step : If any main function missing to execute the source code 
+          Forth step : If any semicolon missing at the end of statement 
+          Fifth step : if any return missing  
+          Last step : If any other type of error
+  
+          Very Very Strictly Check Second step at the begining.
+  
+          Then Very Very Strictly Check Third and Forth and Fifth and Last Steps.
+  
+          According to above steps if it does not contain any errors which you have analyzed in second or third or forth or fifth or in last steps, please respond with "All good, no error found." However, if you analyzed any errors in any above steps then that prevent it from compiling or executing correctly then please provide a brief explanation of all of the errors which you have analyzed in above steps,
+  
+          Strictly not allowed to mention user provided source code in your response.
+          
+          Example :
+  
+                    <<< Code Bug Explanation:
+  
+                    1. **Missing Header File:** The code is missing the '#include <stdio.h>' header file. This file is necessary for using the 'printf' function (note: it's "printf", not "prin").
+  
+                    2. **Typo in Function Name:** The code uses 'prin("hellp")' which seems to be a typo. It should be 'printf("hellp");' to correctly print the output.
+  
+                    3. **Missing Semicolon:**  The code is missing a semicolon at the end of the 'printf("hellp")' statement. 
+  
+                    4. **Missing 'main' Function:** C programs require a 'main' function as the entry point of execution. This code doesn't have a 'main' function.
+  
+                    5. **Return Statement (Implicit in C99 and later):** While not strictly an error in modern C (C99 and later), it's good practice to include an explicit 'return 0;' statement in the 'main' function to indicate successful execution.
+  
+                    **Here's how to fix the code:**
+  
+                    '''c
+                    #include 
+  
+                    int main() {
+                        printf("hello\n"); 
+                        return 0; 
+                    }
+                    '''
+  
+                    **Explanation of Corrections:**
+  
+                    1. '#include': This line includes the standard input/output library, which is needed for functions like 'printf'.
+                    2. 'int main() { ... }': This defines the 'main' function, the starting point of the program. 
+                    3. 'printf("hello\n");': This line now uses the correct 'printf' function to print "hello" to the console, followed by a newline character ('\n') for better formatting.
+                    4. 'return 0;': This line indicates that the program executed successfully. 
+           
+          >>>
+  
+          Very Very Strictly follow above Example for your response.
+          
+          You are strictly not allowed to mention steps.
+          
+          Here are the details of the source code -
+  
+          Source Code: ${input}`
+        );
+      }, 3000); // Delay in milliseconds
+      
+    }
+
+    if (language == "c++") {
+      setTimeout(() => {
+        setShowDelayedText(true);
+        onSent(
+          `You're a meticulous and experienced C++ Language developer with a keen eye for detail, having debugged and optimized countless codes over the years. You take pride in your ability to identify and rectify errors, ensuring that the code is efficient, readable, and reliable.
+  
+          Your task is to strictly analyze the source code provided and strictly analyze the following steps:
+  
+          First step : Check the given source give is in C++ language code or not. If not then strictly ask to provide C++ code.
+          Second step : Code must contain header file to run C++ language code. Strictly check if header file is missing or not.
+          Third step : If any main function missing to execute the source code 
+          Forth step : If any semicolon missing at the end of statement 
+          Fifth step : if any return 0 missing in main function  
+          Last step : If any other type of error
+  
+          Very Very Strictly Check Second step at the begining.
+  
+          Then Very Very Strictly Check Third and Forth and Fifth and Last Steps.
+  
+          According to above steps if it does not contain any errors which you have analyzed in second or third or forth or fifth or in last steps, please respond with "All good, no error found." However, if you analyzed any errors in any above steps then that prevent it from compiling or executing correctly then please provide a brief explanation of all of the errors which you have analyzed in above steps,
+  
+          Strictly not allowed to mention user provided source code in your response.
+          
+          Example :
+  
+          <<< 
+                  Code Bug Explanation:
+  
+                  1. **Missing Header File:** The code is missing the '#include' header file.
+  
+                  2. **Typo in Function Name:** The code uses 'prin("hellp")' which seems to be a typo. It should be 'printf("hellp");' to correctly print the output.
+  
+                  3. **Missing Semicolon:**  The code is missing a semicolon at the end of the 'printf("hellp")' statement. 
+  
+                  4. **Missing 'main' Function:** C programs require a 'main' function as the entry point of execution. This code doesn't have a 'main' function.
+  
+                  5. **Return Statement (Implicit in C99 and later):** While not strictly an error in modern C (C99 and later), it's good practice to include an explicit 'return 0;' statement in the 'main' function to indicate successful execution.
+  
+                  **Here's how to fix the code:**
+  
+                  '''c++
+                  #include 
+  
+                  int main() {
+                      printf("hello\n"); 
+                      return 0; 
+                  }
+                  '''
+  
+                  **Explanation of Corrections:**
+  
+                  * **'#include':** This line includes the standard input/output library, which is needed for functions like 'printf'.
+                  * **'int main() { ... }':** This defines the 'main' function, the starting point of the program. 
+                  * **'printf("hello\n");':** This line now uses the correct 'printf' function to print "hello" to the console, followed by a newline character ('\n') for better formatting.
+                  * **'return 0;':** This line indicates that the program executed successfully. 
+           
+          >>>
+  
+          Very Very Strictly follow above Example for your response.
+          
+          You are strictly not allowed to mention steps.
+          
+          Here are the details of the source code -
+  
+          Source Code: ${input}`
+        );
+      }, 3000); // Delay in milliseconds
+      
+    }
+
+    if (language == "javascript") {
+      setTimeout(() => {
+        setShowDelayedText(true);
+        onSent(
+          `You're a meticulous and experienced JavaScript developer with a keen eye for detail, having debugged and optimized countless codes over the years. You take pride in your ability to identify and rectify errors, ensuring that the code is efficient, readable, and reliable.
+  
+          Your task is to strictly analyze the source code provided and strictly analyzed the following steps:
+          
+          First step : Check the given source give is in javascript code or not. If not then strictly ask to provide javascript code.
+          Second step : If semicolon missing at the end of statement. 
+          Third step : If any other type of error to execute the source code and to make it run.
+  
+          Here are the details of the source code -
+  
+          Source Code: ${input}
+  
+          If it does not contain any errors which you have analyzed in second step or in third step, then please respond with "All good, no error found." However, if you analyzed any errors in second step or in third step then that prevent it from compiling or executing correctly then please provide a brief explanation of all of the errors which you have analyzed in second step and in third step, starting with the title "Code Bug Explanation:" on the next line, followed by a simple and concise description of the error and how to solve it`
+        );
+      }, 3000); // Delay in milliseconds
+      
+    }
+  };
+
+  let getPreviousEditorValue = async () => {
+    setOutput("");
+    setIsLoadingCodeBox(false);
+    setIsErrorCode(false);
+    setResultData(finalresultData);
+
   };
 
   const handleSubmit = async (event) => {
@@ -173,7 +420,7 @@ export default function BugFinder() {
     if (rep.data) {
       // console.log(rep.data);
 
-      toast.success("Successfully Added To Chat !");
+      toast.success("Successfully Added To Report !");
     }
     if (rep.error) {
       // console.log(rep.error.data.error);
@@ -186,8 +433,8 @@ export default function BugFinder() {
       if (rep.error.data.bug_report == "This field may not be blank.") {
         toast.success("Response is Required!");
       }
-      if (rep.error.data.error == "Chat Already Exist") {
-        toast.success("Chat Already Exist!");
+      if (rep.error.data.error == "Report Already Exist") {
+        toast.success("Report Already Exist!");
       }
     }
   };
@@ -237,8 +484,9 @@ export default function BugFinder() {
               component="h1"
               variant="h1"
               sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" },
+                fontSize:{xs: "30px", sm:"35px", lg:"60px"},
+              display: "flex",
+              flexDirection: { xs: "row", md: "row" },
                 alignSelf: "center",
                 textAlign: "center",
               }}
@@ -248,6 +496,9 @@ export default function BugFinder() {
                 component="span"
                 variant="h1"
                 sx={{
+                  fontSize:{xs: "30px", sm:"35px", lg:"60px"},
+              display: "flex",
+              flexDirection: { xs: "row", md: "row" },
                   color: (theme) =>
                     theme.palette.mode === "light"
                       ? "primary.main"
@@ -303,6 +554,7 @@ export default function BugFinder() {
         </h3>
 
         <div
+        className="main-c"
           style={{
             display: "flex",
             marginTop: "1rem",
@@ -320,6 +572,7 @@ export default function BugFinder() {
             }}
           >
             <div
+            className="language-c"
               style={{
                 marginTop: "5rem",
                 display: "flex",
@@ -342,21 +595,22 @@ export default function BugFinder() {
               ></LanguageSelector>
             </div>
             <div
+            className="editors-c"
               style={{
                 position: "absolute",
                 left: 0,
                 right: 0,
                 top: 0,
                 bottom: 0,
-                height: "100%",
-                width: "50%",
+                height: "80vh",
+                width: "50vw",
                 fontSize: "20px",
                 marginTop: "8rem",
               }}
             >
               <Editor
-                height="80vh"
-                width="50vw"
+                className="editors-c"
+                
                 theme="vs-dark"
                 language={language}
                 onMount={handleEditorDidMount}
@@ -367,17 +621,20 @@ export default function BugFinder() {
             </div>
           </div>
           <div
+            className="second-c"
             style={{
               marginLeft: 30,
             }}
           >
             <div
+            className="buttons-c-s"
               style={{
                 marginBottom: "1.5rem",
                 marginTop: "4.5rem",
               }}
             >
               <div
+              className="button-c"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -385,7 +642,29 @@ export default function BugFinder() {
                   gap: 15,
                 }}
               >
-                <Button
+                {isLoadingCodeBox ? (<Button
+                  className="button"
+                  color="bug"
+                  variant="contained"
+                  size="small"
+                  component="a"
+                  target="_blank"
+                  onClick={() => getPreviousEditorValue()}
+                  style={{
+                    paddingLeft: "15px",
+                    paddingRight: "15px",
+                    paddingTop: 15,
+                    paddingBottom: 15,
+                    width: "25%",
+                    fontSize:16,
+                    letterSpacing:1,
+                    fontWeight:500
+                  }}
+                >
+                  Bug Report
+                </Button>): (<Button
+                className="button"
+                  disabled={loading}
                   color="bug"
                   variant="contained"
                   size="small"
@@ -398,14 +677,18 @@ export default function BugFinder() {
                     paddingTop: 15,
                     paddingBottom: 15,
                     width: "25%",
+                    fontSize:16,
+                    letterSpacing:1,
+                    fontWeight:500
                   }}
                 >
                   {loading ? "Please wait..." : "Find Bug"}
-                </Button>
+                </Button>)}
                 {isLoadingCodeBox ? (
                   ""
                 ) : (
                   <Button
+                  className="button"
                     color="primary"
                     variant="contained"
                     size="small"
@@ -421,6 +704,9 @@ export default function BugFinder() {
                       paddingTop: 15,
                       paddingBottom: 15,
                       width: "25%",
+                      fontSize:16,
+                    letterSpacing:1,
+                    fontWeight:500
                     }}
                   >
                     {isLoadingCode ? "Please wait..." : "Run Code"}
@@ -460,6 +746,7 @@ export default function BugFinder() {
                     }}
                   >
                     <Button
+                    className="button"
                       color="primary"
                       variant="contained"
                       size="small"
@@ -494,6 +781,7 @@ export default function BugFinder() {
             </div>
             {/* runner component */}
             <Box
+              className="outputBox-c"
               height={isLoadingCodeBox ? "43vh" : "80vh"}
               width="42vw"
               p={2}
@@ -514,9 +802,25 @@ export default function BugFinder() {
                     fontWeight: 300,
                     lineHeight: 1.8,
                     whiteSpace: "pre-wrap",
+                    letterSpacing:2,
                   }}
                   dangerouslySetInnerHTML={{ __html: resultData }}
                 ></p>
+              )}
+              {loading ? <p
+                  style={{
+                    fontSize: "25px",
+                    marginTop:"25vh",
+                    textAlign:"center",
+                    fontWeight: 500,
+                    lineHeight: 1.8,
+                    whiteSpace: "pre-wrap",
+                    letterSpacing:2,
+                    color:"GrayText"
+                  }}
+                  
+                >Finding Bug. Please Wait....</p> : (
+                  ""
               )}
             </Box>
             <Box
@@ -531,35 +835,25 @@ export default function BugFinder() {
                   xs={12}
                   style={{
                     display: "flex",
+                    justifyContent:"space-between",
                     gap: 15,
                   }}
                 >
                   <TextField
                     sx={{
-                      height: 48,
+                      height: {xs:45,md:48,lg:48},
                       width: "71%",
                     }}
+                    
                     required
                     id="title"
                     label="Enter Title Here..."
                     name="title"
                   />
-                  {/* {server_error.email ? (
-                  <Typography
-                    style={{
-                      fontSize: 12,
-                      color: "red",
-                      paddingLeft: 10,
-                      paddingTop: 5,
-                    }}
-                  >
-                    {server_error.email[0]}
-                  </Typography>
-                ) : (
-                  ""
-                )} */}
+                  
 
                   <div
+                  className="save-report-c"
                     style={{
                       display: "flex",
                       gap: 3,
@@ -578,20 +872,21 @@ export default function BugFinder() {
                       }}
                     />
                     <Button
+                    className="save-report-button"
                       type="submit"
                       style={{
-                        color: "green",
-                        fontSize: "18px",
+                        color: "#fff",
+                        fontSize: "17px",
                         fontWeight: "bold",
-                        paddingLeft: 15,
-                        paddingRight: 15,
+                        paddingLeft: 30,
+                        paddingRight: 30,
                         paddingTop: 8,
                         paddingBottom: 8,
                         borderRadius: 5,
                         border: "1px solid #008000",
                       }}
                     >
-                      Save To Chat
+                      Save Report
                     </Button>
                   </div>
                 </Grid>

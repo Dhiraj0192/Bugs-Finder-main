@@ -1,6 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-
+import './style.css';
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Editor from "@monaco-editor/react";
@@ -100,29 +100,26 @@ export default function CodeAnalysis() {
 
     inputAnalysis = editorRef.current.getValue();
     setInputAnalysis(inputAnalysis);
+    setLoadingAnalysis(true);
+    setResultDataAnalysis("");
 
-    // onSent(
-    //   "Identify given code is python or not. If the given code is in python then Where is the bug in this python code? Explain about error and also solve the given code and provide me solved code. :" +
-    //     input
-    // );
-    onSentAnalysis(
-      "You are a highly skilled " +
-        language +
-        " software developer and code analyser. I have a source code. Your task is to Identify given code is " +
-        language +
-        " or not. If not then simply ask to provide " +
-        language +
-        " code. If the given code is in " +
-        language +
-        " then analyse and explain the complete flow of code in detail. Your explaination title must start with 'Code Analyse Explaination : ' then your explaination from next line'. Here’s the code: " +
-        inputAnalysis
-    );
+    setTimeout(() => {
+      onSentAnalysis(
+        "You are a highly skilled " +
+          language +
+          " software developer and code analyser. I have a source code. Your task is to Identify given code is " +
+          language +
+          " or not. If not then simply ask to provide " +
+          language +
+          " code. If the given code is in " +
+          language +
+          " then analyse and explain the complete flow of code in detail. Your explaination title must start with 'Code Analyse Explaination : ' then your explaination from next line'. Here’s the code: " +
+          inputAnalysis
+      );
+      
+    }, 3000); // Delay in milliseconds
 
-    // if (value === "") {
-    //   setShowDebugContainer(false);
-    // } else {
-    //   setShowDebugContainer(true);
-    // }
+   
   };
 
   return (
@@ -149,8 +146,9 @@ export default function CodeAnalysis() {
               component="h1"
               variant="h1"
               sx={{
+                fontSize:{xs: "30px", sm:"35px", lg:"60px"},
                 display: "flex",
-                flexDirection: { xs: "column", md: "row" },
+                flexDirection: { xs: "row", md: "row" },
                 alignSelf: "center",
                 textAlign: "center",
               }}
@@ -160,6 +158,9 @@ export default function CodeAnalysis() {
                 component="span"
                 variant="h1"
                 sx={{
+                  fontSize:{xs: "30px", sm:"35px", lg:"60px"},
+              display: "flex",
+              flexDirection: { xs: "row", md: "row" },
                   color: (theme) =>
                     theme.palette.mode === "light"
                       ? "primary.main"
@@ -195,6 +196,7 @@ export default function CodeAnalysis() {
         </h3>
 
         <div
+        className="main-c"
           style={{
             display: "flex",
             marginTop: "1rem",
@@ -212,6 +214,7 @@ export default function CodeAnalysis() {
             }}
           >
             <div
+            className="language-c"
               style={{
                 marginTop: "5rem",
                 display: "flex",
@@ -234,21 +237,22 @@ export default function CodeAnalysis() {
               ></LanguageSelector>
             </div>
             <div
+            className="editors-c"
               style={{
                 position: "absolute",
                 left: 0,
                 right: 0,
                 top: 0,
                 bottom: 0,
-                height: "100%",
-                width: "50%",
+                height: "80vh",
+                width: "50vw",
                 fontSize: "20px",
                 marginTop: "8rem",
               }}
             >
               <Editor
-                height="80vh"
-                width="50vw"
+              className="editors-c"
+                
                 theme="vs-dark"
                 language={language}
                 onMount={handleEditorDidMount}
@@ -259,18 +263,23 @@ export default function CodeAnalysis() {
             </div>
           </div>
           <div
+          className="second-c"
             style={{
               marginLeft: 30,
             }}
           >
             <div
+            className="buttons-c-s"
               style={{
                 marginBottom: "1.5rem",
                 marginTop: "4.5rem",
               }}
             >
-              <div>
+              <div
+              className="button-c">
                 <Button
+                className="button"
+                  disabled={loadingAnalysis}
                   color="primary"
                   variant="contained"
                   size="small"
@@ -283,6 +292,9 @@ export default function CodeAnalysis() {
                     paddingTop: 15,
                     paddingBottom: 15,
                     width: "25%",
+                    fontSize:16,
+                    letterSpacing:1,
+                    fontWeight:500
                   }}
                 >
                   {loadingAnalysis ? "Please wait..." : "Analyse Code"}
@@ -291,6 +303,7 @@ export default function CodeAnalysis() {
             </div>
             {/* runner component */}
             <Box
+            className="outputBox-c"
               height="80vh"
               width="42vw"
               p={2}
@@ -308,9 +321,25 @@ export default function CodeAnalysis() {
                     fontWeight: 300,
                     lineHeight: 1.8,
                     whiteSpace: "pre-wrap",
+                    letterSpacing:2,
                   }}
                   dangerouslySetInnerHTML={{ __html: resultDataAnalysis }}
                 ></p>
+              )}
+              {loadingAnalysis ? <p
+                  style={{
+                    fontSize: "25px",
+                    marginTop:"25vh",
+                    textAlign:"center",
+                    fontWeight: 500,
+                    lineHeight: 1.8,
+                    whiteSpace: "pre-wrap",
+                    letterSpacing:2,
+                    color:"GrayText"
+                  }}
+                  
+                >Describing Code. Please Wait....</p> : (
+                  ""
               )}
             </Box>
           </div>

@@ -136,7 +136,7 @@ export default function SignIn() {
         component="main"
         maxWidth="md"
         sx={{
-          marginTop: "140px",
+          marginTop: {xs:"0px",md:"0px",lg:"140px"},
           marginBottom: "30px",
           border: "#0A66C2 solid 2px",
           paddingBottom: 5,

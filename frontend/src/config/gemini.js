@@ -37,13 +37,14 @@ const safetySettings = [
 ];
 
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-pro",
+  model: "gemini-1.5-flash",
+
 });
 
 const generationConfig = {
   temperature: 0.5,
-  topP: 0.95,
-  topK: 64,
+  topP: 1,
+  topK: 40,
   maxOutputTokens: 2000,
   responseMimeType: "text/plain",
 };
@@ -58,7 +59,7 @@ async function run(prompt) {
 
   // Send user message and receive response
   const result = await chatSession.sendMessage(prompt);
-  console.log(result.response.text());
+  console.log(result);
   return result.response.text();
 }
 

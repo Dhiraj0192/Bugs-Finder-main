@@ -14,12 +14,14 @@ import Hero from "./components/Hero";
 import Highlights from "./components/Highlights";
 
 import Features from "./components/Features";
-
+import { toast } from "react-toastify";
 import Footer from "./components/Footer";
 import getLPTheme from "./getLPTheme";
 import { getToken } from "../services/localStorageService";
 import { setUserToken } from "../features/authSlice";
 import { useDispatch } from "react-redux";
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
   const { access_token } = getToken();
@@ -76,6 +78,26 @@ export default function LandingPage() {
   const toggleCustomTheme = () => {
     setShowCustomTheme((prev) => !prev);
   };
+
+  const location = useLocation();
+
+  useEffect(() => {
+      const params = new URLSearchParams(location.search);
+      const msg = params.get('message');
+      const errmsg = params.get('errmessage');
+      const alreadymsg = params.get('alreadymessage');
+      if (msg) {
+          toast.success("Account Successfully Avtivated. Please Proceed To Login Now !!");
+      }
+      if (errmsg) {
+        toast.error("Invalid Activation Link !!");
+      }
+      if (alreadymsg) {
+        
+        toast.warn("Account Is Already Activated !!");
+      }
+      
+  }, [location]);
 
   return (
     <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>

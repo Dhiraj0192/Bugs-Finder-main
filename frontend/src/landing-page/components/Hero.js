@@ -45,8 +45,9 @@ export default function Hero() {
       id="hero"
       sx={(theme) => ({
         display: "flex",
-        paddingLeft: "100px",
-        paddingRight: "50px",
+        flexDirection :{xs :"column",md:"column",lg:"row"},
+        paddingLeft: {xs:"10px",sm:"10px",lg:"100px"},
+        paddingRight: {xs:"10px",sm:"10px",lg:"50px"},
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
@@ -76,8 +77,9 @@ export default function Hero() {
             component="h1"
             variant="h1"
             sx={{
+              fontSize:{xs: "20px", sm:"35px", lg:"60px"},
               display: "flex",
-              flexDirection: { xs: "column", md: "row" },
+              flexDirection: { xs: "row", md: "row" },
               alignSelf: "center",
               textAlign: "center",
             }}
@@ -93,6 +95,7 @@ export default function Hero() {
                     : "primary.light",
 
                 marginLeft: 2,
+                fontSize:{xs: "20px", sm:"35px", lg:"60px"},
               }}
             >
               {isSuccess ? userData.name : "Finder"}
@@ -130,8 +133,8 @@ export default function Hero() {
       ) : (
         <Container
           sx={{
-            width: "75%",
-            marginRight: "100px",
+            width: {xs:"100%",md:"75%"},
+            marginRight: {xs:"0px",md:"100px"},
           }}
         >
           <SignIn></SignIn>

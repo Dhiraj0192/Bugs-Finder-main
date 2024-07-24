@@ -127,6 +127,7 @@ export default function SignUp() {
       <Container
         sx={{
           display: "flex",
+          flexDirection :{xs :"column",md:"column",lg:"row"},
           alignItems: "center",
 
           width: "100%",
@@ -152,8 +153,10 @@ export default function SignUp() {
               component="h1"
               variant="h1"
               sx={{
+                fontSize:{xs: "20px", sm:"35px", lg:"60px"},
                 display: "flex",
-                flexDirection: { xs: "column", md: "row" },
+                flexDirection: { xs: "row", md: "row" },
+                
                 alignSelf: "center",
                 textAlign: "center",
               }}
@@ -163,6 +166,7 @@ export default function SignUp() {
                 component="span"
                 variant="h1"
                 sx={{
+                  fontSize:{xs: "20px", sm:"35px", lg:"60px"},
                   color: (theme) =>
                     theme.palette.mode === "light"
                       ? "primary.main"
@@ -203,14 +207,16 @@ export default function SignUp() {
           component="main"
           maxWidth="xl"
           sx={{
-            marginTop: "140px",
+            marginTop: {xs:"0px",md:"0px",lg:"140px"},
+            width: {xs:"100%",md:"85%"},
+            marginRight: {xs:"0px",md:"50px"},
             marginBottom: "30px",
             border: "#0A66C2 solid 2px",
             paddingBottom: 5,
             // paddingRight: 5,
-            paddingLeft: 5,
+            paddingLeft: {xs:2,md:5},
             borderRadius: 10,
-            width: "126%",
+            
           }}
         >
           <CssBaseline />

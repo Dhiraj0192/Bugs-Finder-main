@@ -21,6 +21,7 @@ from account.utils import send_activation_email
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
+from django.http import HttpResponseRedirect
 
 
 
@@ -87,17 +88,21 @@ class ActivateView(APIView):
                    
                     
                     # return render(request, 'success_message.html', {'message': 'Account is already activated'})
-                    return Response({'detail': 'Account is already activated.'}, status=status.HTTP_200_OK)
+                    return HttpResponseRedirect('http://localhost:3000/?alreadymessage=Account%20Is%20Already%20Activated')
+                    # return Response({'detail': 'Account is already activated.'}, status=status.HTTP_200_OK)
                     # render_to_string('account/success_message.html', {'message': 'Account is already activated'})
  
                 user.is_active = True
                 user.save()
                 
-                return Response({'detail': 'Account activated successfully.'}, status=status.HTTP_200_OK)
+                
+                return HttpResponseRedirect('http://localhost:3000/?message=Account%20Successfully%20Activated')
             else:
-                return Response({'detail': 'Invalid activation link.'}, status=status.HTTP_400_BAD_REQUEST)
+                return HttpResponseRedirect('http://localhost:3000/?errmessage=Invalid%20Activation%20Link')
+                # return Response({'detail': 'Invalid activation link.'}, status=status.HTTP_400_BAD_REQUEST)
         except User.DoesNotExist:
-            return Response({'detail': 'Invalid activation link.'}, status=status.HTTP_400_BAD_REQUEST)
+            return HttpResponseRedirect('http://localhost:3000/?errmessage=Invalid%20Activation%20Link')
+            # return Response({'detail': 'Invalid activation link.'}, status=status.HTTP_400_BAD_REQUEST)
         
 
 
@@ -119,11 +124,14 @@ class ActivationConfirm(APIView):
  
                 user.is_active = True
                 user.save()
-                return Response({'detail': 'Account activated successfully.'}, status=status.HTTP_200_OK)
+                
+                return HttpResponseRedirect('http://localhost:3000/?message=Account%20Successfully%20Activated')
             else:
-                return Response({'detail': 'Invalid activation link.'}, status=status.HTTP_400_BAD_REQUEST)
+                return HttpResponseRedirect('http://localhost:3000/?errmessage=Invalid%20Activation%20Link')
+                # return Response({'detail': 'Invalid activation link.'}, status=status.HTTP_400_BAD_REQUEST)
         except User.DoesNotExist:
-            return Response({'detail': 'Invalid activation link.'}, status=status.HTTP_400_BAD_REQUEST)
+            return HttpResponseRedirect('http://localhost:3000/?errmessage=Invalid%20Activation%20Link')
+            # return Response({'detail': 'Invalid activation link.'}, status=status.HTTP_400_BAD_REQUEST)
         
 
 # @method_decorator(csrf_protect, name='dispatch')
@@ -191,10 +199,10 @@ class ReportView(APIView):
         bug_code = request.data.get('bug_code')
         title = request.data.get('title')
         if serializer.is_valid():
-            if Report.objects.filter(bug_code=bug_code).exists():
-                return Response({'error':'Chat Already Exist'}, status=status.HTTP_400_BAD_REQUEST)
+            # if Report.objects.filter(bug_code=bug_code).exists():
+            #     return Response({'error':'Report Already Exist'}, status=status.HTTP_400_BAD_REQUEST)
                 
-            else:
+            # else:
                 report = serializer.save()
                 return Response({'data':serializer.data}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
