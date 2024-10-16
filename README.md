@@ -26,52 +26,6 @@ The **Bug Finder System** is a web-based application designed to assist users in
 ### Database:
 ![MySql](https://badge.ttsalpha.com/api?icon=mysql&label=MySql&status=Database&color=blue&iconColor=green) - : - Stores user code submissions and debugging reports.
 
-## Installation
-1. **Clone the repository**:
-
-    ```bash
-    git clone https://github.com/Dhiraj0192/Bugs-Finder-main.git
-    ```
-2. **Navigate to the project directory**:
-    ```bash
-    cd bug-finder-system
-    ```
-3. **Set up the backend**:
-    - Navigate to the project backend directory:
-     
-      ```bash
-      cd bugsfinder
-      ```
-    - Install requirements.txt :
-     
-      ```bash
-      pip install -r requirements.txt
-      ```
-    - Set up the database:
-      ```bash
-      python manage.py migrate
-      ```
-4. **Set up the frontend**:
-    - Navigate to the project froentend directory:
-     
-      ```bash
-      cd frontend
-      ```
-    - Ensure Node.js is installed.
-    - Install the necessary React dependencies:
-      ```bash
-      npm install
-      ```
-
-5. **Run the project**:
-    - Start the Django backend:
-      ```bash
-      python manage.py runserver
-      ```
-    - Start the React frontend:
-      ```bash
-      npm start
-      ```
 
 ## Usage
 1. **Sign Up/Sign In**: Users need to create an account or log in.
@@ -105,6 +59,28 @@ The **Bug Finder System** is a web-based application designed to assist users in
 
 ### CheatSheet-Page 
 <img src="website-pics/cheat-sheet-page.png" alt="project-screenshot" width="90%" height="100%"/>
+
+-----------------------------------------------------------------------------------------------------------------------------
+<h3 align="center">Hi there😄</h3>
+
+**You Can use this Beautiful Project for your college Project and get good marks too.**
+
+Email me Now **yadavdhiru201@gmail.com** to get this Full Project Code, PPT, Report of this Project.
+ 
+### HOW TO RUN THE PROJECT-
+⚡ Email me at **yadavdhiru201@gmail.com** to get a detailed Guide report with Code to run the project with source Code.
+
+### Need Code, Documents & Explanation video ? 
+
+## How to Reach me :
+
+### Mail : yadavdhiru201@gmail.com 
+
+### WhatsApp: **+977 9803403860** (Helping 24*7) 
+
+### Website : https://www.dhirajyadav.com.np
+
+Mail/Message me for Projects Help 🙏🏻
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
